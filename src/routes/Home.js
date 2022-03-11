@@ -62,6 +62,7 @@ const Home = ({userObj}) => {
     };
 
     const onClearAttachment = () => setAttachment("");
+    console.log(userObj);
 
     return (
         <>
