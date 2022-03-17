@@ -13,6 +13,8 @@ function App() {
         setUserObj({
           uid: user.uid,
           displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
           updateProfile: (args) => updateProfile(user, args),
         });
       } else {
@@ -27,6 +29,8 @@ function App() {
     setUserObj({
       uid: user.uid,
       displayName: user.displayName,
+      email: user.email,
+      photoURL: user.photoURL,
       updateProfile: (args) => updateProfile(user, args),
     });
   };

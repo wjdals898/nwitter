@@ -39,7 +39,6 @@ form {
 
 .container {
   width: 100%;
-  max-width: 320px;
   display: flex;
   flex-direction: column;
 }
@@ -285,4 +284,61 @@ form {
   display: block;
   font-size: 12px;
   text-decoration: underline;
+}
+.navbar {
+  height: 100%;
+}
+.nav {
+  float: left;
+  text-align: left;
+}
+
+.navLink {
+  font-size: 22px;
+  color: black;
+  margin-top: 10px;
+  padding: 13px;
+  border-radius: 30px;
+}
+
+.navLink:hover {
+  background-color: #eaeaea;
+}
+
+.navLogo {
+  font-size: 30px;
+  padding: 13px;
+  border-radius: 30px;
+}
+
+.tweetBtn {
+  background-color: #04aaff;
+  width: 80%;
+  border-radius: 30px;
+  float: left;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.myProfile {
+  position: absolute;
+  bottom: 0;
+  margin: 5px;
+  padding: 15px;
+  border-radius: 50px;
+}
+
+.myProfile:hover {
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+
+.myImg {
+  border-radius: 70%;
+}
+
+.modal {
+  font-size: 20px;
+  text-align: center;
 }
