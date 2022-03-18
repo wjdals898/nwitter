@@ -3,17 +3,21 @@ import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Auth from "routes/Auth";
 import Home from "routes/Home";
 import Profile from "routes/Profile";
+import Header from "./Header";
 import Navigation from "./Navigation";
 
 const AppRouter = ({isLoggedIn, userObj, refreshUser}) => {
     return (
         <Router>
             <Container>
-                <Row style={{height: "100%", }}>
-                    <Col xs="4" md="3">
-                        {isLoggedIn && <Navigation userObj={userObj} />}
+                <div className="container" style={{position: "fixed", top: 0, }}>
+                    <Header />
+                </div>
+                <Row >
+                    <Col sm="4" md="3" style={{height: "100%", position: "fixed", top:0}}>
+                        {isLoggedIn && <Navigation style={{}} userObj={userObj} />}
                     </Col>
-                    <Col xs="10" md="6">
+                    <Col sm="10" md="6">
                         <Routes>
                             {isLoggedIn ? (
                                 <>

@@ -37,10 +37,11 @@ form {
   opacity: 0.9;
 }
 
-.container {
+.homeContainer {
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin-left: 350px;
 }
 
 .formInput {
@@ -285,8 +286,13 @@ form {
   font-size: 12px;
   text-decoration: underline;
 }
+
+.navContainer {
+  
+}
 .navbar {
   height: 100%;
+  margin-top: 30px;
 }
 .nav {
   float: left;
@@ -305,20 +311,15 @@ form {
   background-color: #eaeaea;
 }
 
-.navLogo {
-  font-size: 30px;
-  padding: 13px;
-  border-radius: 30px;
-}
-
 .tweetBtn {
   background-color: #04aaff;
-  width: 80%;
+  width: 100%;
   border-radius: 30px;
   float: left;
   font-size: 20px;
   font-weight: bold;
   margin-top: 10px;
+  
 }
 
 .myProfile {
@@ -341,4 +342,8 @@ form {
 .modal {
   font-size: 20px;
   text-align: center;
+}
+
+.Header {
+  margin-top: 10px;
 }

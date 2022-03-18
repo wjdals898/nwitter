@@ -20,7 +20,7 @@ const Home = ({userObj}) => {
     console.log(userObj);
 
     return (
-        <div className="container">
+        <div className="homeContainer">
             <NweetFactory userObj={userObj} />
             <div style={{ marginTop: 30 }}>
                 {nweets.map((nweet) => (
