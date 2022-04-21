@@ -23,7 +23,7 @@ const Auth = () => {
     };
 
     return (
-        <div className="authContainer">
+        <div className="mainContainer">
             <FontAwesomeIcon icon={faTwitter} color={"#04AAFF"} size="3x" style={{marginBottom: 30}} />
             <AuthForm />
             <div className="authBtns">

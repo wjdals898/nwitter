@@ -3,11 +3,15 @@ import { useState } from "react";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faPencilAlt, faRetweet } from "@fortawesome/free-solid-svg-icons";
+import { faComment, faHeart } from "@fortawesome/free-regular-svg-icons";
+import { Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Nweet = ({nweetObj, isOwner}) => {
     const [editing, setEditing] = useState(false);
     const [newNweet, setNewNweet] = useState(nweetObj.text);
+    const [isHovering, setIsHovering] = useState(false);
 
     const onDeleteClick = async () => {
         const ok = window.confirm("삭제하시겠습니까?");
@@ -18,7 +22,6 @@ const Nweet = ({nweetObj, isOwner}) => {
             }
         }
     };
-
     const toggleEditing = () => setEditing((prev) => !prev);
 
     const onChange = (event) => {
@@ -45,22 +48,42 @@ const Nweet = ({nweetObj, isOwner}) => {
                     <button onClick={toggleEditing} className="formBtn cancelBtn">Cancel</button>
                 </>
             ) : (
-                <>
-                    <h4>{nweetObj.text}</h4>
-                    {nweetObj.attachmentUrl && (
-                        <img src={nweetObj.attachmentUrl} width="100px" height="100px" />
-                    )}
-                    {isOwner && (
-                        <div className="nweet__actions">
-                            <span onClick={onDeleteClick}>
-                                <FontAwesomeIcon icon={faTrash} />
-                            </span>
-                            <span onClick={toggleEditing}>
-                                <FontAwesomeIcon icon={faPencilAlt} />
-                            </span>
+                <div className="nweetContainer">
+                    <div className="profileImg" style={{float: "left"}}>
+                        <img src={nweetObj.creatorPhotoURL} />
+                    </div>
+                    <div style={{float: "left", width: "85%"}}>
+                        <div>
+                            <Link to={"/profile/"+nweetObj.creatorName} style={{fontWeight: "bold"}}>{nweetObj.creatorName}</Link>
+                            <span style={{color: "gray", marginLeft: "10px"}}>{nweetObj.creatorEmail}</span>
                         </div>
-                    )}
-                </>
+                        <div>
+                            <p>{nweetObj.text}</p>
+                        </div>
+                        <div>
+                            {nweetObj.attachmentUrl && (
+                                <img src={nweetObj.attachmentUrl} width="100%" style={{borderRadius: "20px"}}/>
+                            )}
+                        </div>
+                        <div className="tweetIcons" style={{ width: "99%", textAlign: "center"}}>
+                            <p style={{float: "left", width: "33%"}} className="comment">
+                                <FontAwesomeIcon icon={faComment} className="tweetIcon commentIcon"/>
+                                <span className="commentNum">comment수</span>
+                            </p>
+                            <p style={{float: "left", width: "33%"}} className="retweet">
+                                <FontAwesomeIcon icon={faRetweet} className="tweetIcon retweetIcon"/>
+                                <span className="retweetNum">리트윗수</span>
+                            </p>
+                            <p style={{float: "left", width: "33%"}} className="heart">
+                                <FontAwesomeIcon icon={faHeart} className="tweetIcon heartIcon"/>
+                                <span className="heartNum">마음수</span>
+                            </p>
+                            <p style={{clear: "both"}}></p>
+                        </div>
+                        
+                    </div>
+                    <p style={{clear: "both"}}></p>
+                </div>
             )}
         </div>
     );

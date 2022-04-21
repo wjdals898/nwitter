@@ -5,6 +5,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { Container } from "react-bootstrap";
 
 const NweetFactory = ({userObj}) => {
     const [nweet, setNweet] = useState("");
@@ -21,10 +22,13 @@ const NweetFactory = ({userObj}) => {
             const response = await uploadString(attachmentRef, attachment, 'data_url');
             attachmentUrl = await getDownloadURL(ref(attachmentRef));
         }
-        await addDoc(collection(dbService, "nweets"), {
+        await addDoc(collection(dbService, "nweets"), { 
             text: nweet,
             createdAt: Date.now(),
             creatorId: userObj.uid,
+            creatorPhotoURL: userObj.photoURL,
+            creatorName: userObj.displayName,
+            creatorEmail: userObj.email,
             attachmentUrl,
         });
         setNweet("");
@@ -61,14 +65,15 @@ const NweetFactory = ({userObj}) => {
     return (
         <form onSubmit={onSubmit} className="factoryForm">
             <div className="factoryInput__container">
-                <input className="factoryInput__input" value={nweet} onChange={onChange} type="text" placeholder="What's on your mind?" maxLength={120}/> {/*트윗 글자 수 120자로 제한*/}
-                <input type="submit" value="&rarr;" className="factoryInput__arrow"/>
+                <img src={userObj.photoURL} style={{width: "50px", height: "50px", borderRadius: "50px"}}/>
+                <input className="factoryInput__input" value={nweet} onChange={onChange} type="text" placeholder="무슨 일이 일어나고 있나요?" maxLength={120}/> {/*트윗 글자 수 120자로 제한*/}
+                <input type="submit" value="트윗하기" className="factoryInput__arrow"/>
             </div>
             <label htmlFor="attach-file" className="factoryInput__label">
                 <span>Add photos</span>
                 <FontAwesomeIcon icon={faPlus} />
-            </label>    
-            <input id="attach-file" type="file" accept="image/*" onChange={onFileChange} style={{opacity: 0,}} />
+            </label>
+            <input className="" id="attach-file" type="file" accept="image/*" onChange={onFileChange} style={{opacity: 0,}} />
             {attachment && (
                 <div className="factoryForm__attachment">
                     <img src={attachment} style={{backgroundImage: attachment,}} />
@@ -78,6 +83,7 @@ const NweetFactory = ({userObj}) => {
                     </div>
                 </div>
             )}
+            
         </form>
     );
 };

@@ -20,13 +20,14 @@ const Home = ({userObj}) => {
     console.log(userObj);
 
     return (
-        <div className="homeContainer">
-            <NweetFactory userObj={userObj} />
-            <div style={{ marginTop: 30 }}>
-                {nweets.map((nweet) => (
-                    <Nweet key={nweet.id} nweetObj={nweet} isOwner={nweet.creatorId === userObj.uid}/>
-                ))}
+        <div className="mainContainer">
+            <div className="header">
+                <span style={{fontSize: "20px", fontWeight:"bold",}}>홈</span>
             </div>
+            <NweetFactory userObj={userObj} />
+            {nweets.map((nweet) => (
+                <Nweet key={nweet.id} nweetObj={nweet} isOwner={nweet.creatorId === userObj.uid}/>
+            ))}
         </div>
     );
 };

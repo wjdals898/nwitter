@@ -19,6 +19,9 @@ const Navigation = ({userObj}) => {
 
     return (
         <Container className="navContainer">
+            <div className="logo">
+                <Link to="/" style={{fontSize: "28px", fontWeight:"bold",}}><FontAwesomeIcon icon={faTwitter} style={{color: "#04aaff",}}/></Link>
+            </div>
             <Navbar  className="navbar" expand="lg" style={{width: "100%", }}>
                 <Container className="nav" style={{float: "left", textAlign: "left",}}>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -30,13 +33,13 @@ const Navigation = ({userObj}) => {
                         <Link to="/"  className="navLink"><FontAwesomeIcon icon={faEnvelope} />&nbsp;&nbsp;&nbsp;쪽지</Link>
                         <Link to="/"  className="navLink"><FontAwesomeIcon icon={faBookmark} />&nbsp;&nbsp;&nbsp;북마크</Link>
                         <Link to="/"  className="navLink"><FontAwesomeIcon icon={faListAlt} />&nbsp;&nbsp;&nbsp;리스트</Link>
-                        <Link to="/profile"  className="navLink"><FontAwesomeIcon icon={faUser} />&nbsp;&nbsp;&nbsp;프로필</Link>
-                        <Button className="tweetBtn">트윗하기</Button>
+                        <Link to={"/profile/"+userObj.displayName}  className="navLink"><FontAwesomeIcon icon={faUser} />&nbsp;&nbsp;&nbsp;프로필</Link>
+                        
                     </Nav>
                     </Navbar.Collapse>
                 </Container>
-                
             </Navbar>
+            <Button className="tweetBtn">트윗하기</Button>
             <OverlayTrigger
                 trigger="click"
                 key="top"
@@ -68,22 +71,21 @@ const Navigation = ({userObj}) => {
                 }
             >
                 <div className="myProfile">
-                    <table>
-                        <tbody >
-                            <tr>
-                                <td rowSpan={2}><img src={userObj.photoURL} width="40px" height="40px" className="myImg"/></td>
-                                <td>
-                                    <div style={{fontSize: "16px", fontWeight: "bold",}}>{userObj.displayName ? `${userObj.displayName}` : "User"}</div>
-                                </td>
-                                <td rowSpan={2}>
-                                    <div><FontAwesomeIcon icon={faEllipsisH}/></div>
-                                </td>
-                            </tr>
-                            <tr >
-                                <td><div>{userObj.email}</div></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div style={{float: "left", width: "20%"}}>
+                        <img src={userObj.photoURL} className="myImg"/>
+                    </div>
+                    <div style={{float: "left", width: "70%"}}>
+                        <div style={{marginTop: "5px", fontWeight: "bold"}}>
+                            {userObj.displayName ? `${userObj.displayName}` : "User"}
+                        </div>
+                        <div style={{marginTop: "2px"}}>
+                            {userObj.email}
+                        </div>
+                    </div>
+                    <div style={{float: "left", width: "10%", paddingTop: "12px", paddingLeft: "10px"}}>
+                        <FontAwesomeIcon icon={faEllipsisH}/>
+                    </div>
+                    
                 </div>    
             </OverlayTrigger>
             
